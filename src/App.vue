@@ -16,8 +16,8 @@ import { RouterView } from 'vue-router';
   width: 100%;
   margin: 0 auto;
 
-  color: #000000;
-  background-color: #f6f5f6;
+  color: var(--black-color);
+  background-color: var(--white-bg-color);
 
   box-sizing: border-box;
   overflow: hidden;

@@ -6,6 +6,20 @@ const Routes = {
       title: 'Start',
     },
   },
+  DEPARTMENTS: {
+    name: 'Departments',
+    path: '/departments',
+    meta: {
+      title: 'Departments',
+    },
+  },
+  STAFF: {
+    name: 'Staff',
+    path: '/staff',
+    meta: {
+      title: 'Staff',
+    },
+  },
 };
 
 export { Routes };

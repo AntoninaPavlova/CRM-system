@@ -10,13 +10,13 @@
         <div class="crm-content__sidebar">
           <ul lass="crm-content__list">
             <li class="crm-content__point">
-              <a href="#" class="crm-content__link">Главная</a>
+              <router-link :to="`/`">Главная</router-link>
             </li>
             <li class="crm-content__point">
-              <a href="#" class="crm-content__link">Департаменты</a>
+              <router-link :to="`/departments`">Департаменты</router-link>
             </li>
             <li class="crm-content__point">
-              <a href="#" class="crm-content__link">Сотрудники</a>
+              <router-link :to="`/staff`">Сотрудники</router-link>
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@
   max-width: 180px;
   height: 40px;
 
-  font-size: 26px;
+  font-size: 21px;
 }
 
 .crm-content {
@@ -77,16 +77,13 @@
   max-width: 170px;
   width: 100%;
   min-height: calc(100vh - var(--header-height));
+  padding-top: 40px;
 
   display: flex;
   flex-direction: column;
 
   background: var(--turquoise-bg-color);
   overflow: hidden;
-}
-
-.crm-content__list {
-  margin-top: 20px;
 }
 
 .crm-content__point {
