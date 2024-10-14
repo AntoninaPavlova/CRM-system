@@ -1,23 +1,23 @@
 <script setup></script>
 
 <template>
-  <div class="crm-content__sidebar">
-    <ul сlass="crm-content__list">
-      <li class="crm-content__point">
-        <router-link :to="`/`" class="crm-content__link">Главная</router-link>
+  <div class="crm-sidebar">
+    <ul сlass="crm-sidebar__list">
+      <li class="crm-sidebar__point">
+        <router-link :to="`/`" class="crm-sidebar__link">Главная</router-link>
       </li>
-      <li class="crm-content__point">
-        <router-link :to="`/departments`" class="crm-content__link">Департаменты</router-link>
+      <li class="crm-sidebar__point">
+        <router-link :to="`/departments`" class="crm-sidebar__link">Департаменты</router-link>
       </li>
-      <li class="crm-content__point">
-        <router-link :to="`/staff`" class="crm-content__link">Сотрудники</router-link>
+      <li class="crm-sidebar__point">
+        <router-link :to="`/staff`" class="crm-sidebar__link">Сотрудники</router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <style scoped>
-.crm-content__sidebar {
+.crm-sidebar {
   max-width: 170px;
   width: 100%;
   min-height: calc(100vh - var(--header-height));
@@ -30,7 +30,7 @@
   overflow: hidden;
 }
 
-.crm-content__point {
+.crm-sidebar__point {
   max-width: 150px;
   width: 100%;
   height: 28px;
@@ -46,7 +46,7 @@
   background-color: var(--white-color);
   cursor: pointer;
   &:nth-of-type(1) {
-    .crm-content__link {
+    .crm-link {
       font-size: 19px;
     }
   }
@@ -55,7 +55,7 @@
   }
 }
 
-.crm-content__link {
+.crm-sidebar__link {
   font-size: 16px;
 }
 </style>

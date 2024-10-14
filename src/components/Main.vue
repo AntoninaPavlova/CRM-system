@@ -6,7 +6,9 @@ import Sidebar from '@/components/Sidebar.vue';
   <main class="crm-main">
     <div class="crm-content">
       <Sidebar />
-      <div class="crm-content__details"></div>
+      <div class="crm-details">
+        <slot></slot>
+      </div>
     </div>
   </main>
 </template>
