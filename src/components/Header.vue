@@ -2,7 +2,7 @@
 
 <template>
   <header class="crm-header">
-    <button type="button" class="crm-header__btn">Добавить</button>
+    <button type="button" class="crm-header__btn">Лого</button>
   </header>
 </template>
 

@@ -7,9 +7,13 @@ import Header from '@/components/Header.vue';
   <div class="crm-container">
     <Header />
     <Main>
-      <h1>Добро пожаловать на стартовую страницу!</h1>
+      <h1 class="crm-title">Добро пожаловать на главную страницу!</h1>
     </Main>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.crm-title {
+  font-size: 16px;
+}
+</style>

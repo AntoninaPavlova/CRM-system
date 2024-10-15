@@ -25,4 +25,9 @@ import Sidebar from '@/components/Sidebar.vue';
   display: flex;
   flex-direction: row;
 }
+
+.crm-details {
+  width: 100%;
+  padding: 20px;
+}
 </style>

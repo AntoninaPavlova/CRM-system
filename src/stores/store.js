@@ -1,10 +1,20 @@
 import { defineStore } from 'pinia';
+import axios from 'axios';
 
-export const useStore = defineStore('use-store', {
-  state: () => {
-    return {};
+export const appStore = defineStore('app-store', {
+  state: () => ({
+    departments: [],
+  }),
+  getters: {
   },
-  getters: {},
-
-  actions: {},
+  actions: {
+    async fetchDepartments() {
+      try {
+        const response = await axios.get('http://localhost:5000/api/departments');
+        this.departments = response.data;
+      } catch (error) {
+        console.error('Ошибка при получении данных:', error);
+      }
+    },
+  },
 });

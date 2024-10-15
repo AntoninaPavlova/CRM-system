@@ -6,9 +6,7 @@ import Header from '@/components/Header.vue';
 <template>
   <div class="crm-container">
     <Header />
-    <Main>
-      <h1>Добро пожаловать на страницу сотрудников!</h1>
-    </Main>
+    <Main> </Main>
   </div>
 </template>
 
