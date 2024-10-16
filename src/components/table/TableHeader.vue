@@ -7,7 +7,7 @@
       <div class="crm-table__name">Описание</div>
       <div class="crm-table__name">Сотрудники</div>
       <div class="crm-table__name">Заведующий</div>
-      <div class="crm-table__name"></div>
+      <div class="crm-table__name">Действия</div>
       <div class="crm-table__name"></div>
     </div>
   </div>

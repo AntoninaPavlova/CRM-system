@@ -5,8 +5,7 @@ export const appStore = defineStore('app-store', {
   state: () => ({
     departments: [],
   }),
-  getters: {
-  },
+  getters: {},
   actions: {
     async fetchDepartments() {
       try {
@@ -14,6 +13,16 @@ export const appStore = defineStore('app-store', {
         this.departments = response.data;
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
+      }
+    },
+
+    async deleteDepartment(id) {
+      try {
+        await axios.delete(`http://localhost:5000/api/departments/${id}`);
+
+        this.departments = this.departments.filter((elem) => elem._id !== id);
+      } catch (error) {
+        console.error('Ошибка при удалении отдела:', error);
       }
     },
   },

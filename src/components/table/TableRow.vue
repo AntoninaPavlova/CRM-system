@@ -1,4 +1,7 @@
 <script setup>
+import { appStore } from '@/stores/store.js';
+const useStore = appStore();
+
 const props = defineProps({
   department: {
     type: Object,
@@ -8,6 +11,10 @@ const props = defineProps({
 
 const truncateDescription = (description) => {
   return description.substring(0, 18) + ' ...';
+};
+
+const onClickDeleteDepartment = async (id) => {
+  await useStore.deleteDepartment(id);
 };
 </script>
 
@@ -20,7 +27,7 @@ const truncateDescription = (description) => {
     <button class="crm-table__button crm-table__edit-button">
       <img src="@/img/edit.png" alt="edit" width="23" height="23" />
     </button>
-    <button class="crm-table__button crm-table__delete-button">
+    <button @click="onClickDeleteDepartment(department._id)" class="crm-table__button crm-table__delete-button">
       <img src="@/img/delete.png" alt="delete" width="23" height="23" />
     </button>
   </div>
@@ -46,5 +53,9 @@ const truncateDescription = (description) => {
 .crm-table__text {
   padding: 10px 0;
   font-size: 16px;
+}
+
+.crm-table__button {
+  cursor: pointer;
 }
 </style>

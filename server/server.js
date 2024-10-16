@@ -45,6 +45,17 @@ app.get('/api/staff', async (req, res) => {
   }
 });
 
+// API для удаления отдела
+app.delete('/api/departments/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Department.findByIdAndDelete(id);
+    res.status(204).send(); 
+  } catch (error) {
+    res.status(500).json({ message: 'Ошибка при удалении отдела', error });
+  }
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);
