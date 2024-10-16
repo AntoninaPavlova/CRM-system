@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const Department = require('./models/Department');
 const Staff = require('./models/Staff');
@@ -11,7 +13,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-const uri = 'mongodb://localhost:27017/companyDB';
+const uri = process.env.MONGODB_URI;
 
 // Подключение к MongoDB
 mongoose
