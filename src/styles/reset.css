@@ -7,9 +7,14 @@
 :root {
   --white-color: #ffffff;
   --black-color: #000000;
+  --light-gray-color: #e2e8f0;
+  --blue-color: #1a202c;
+  --lilac-color: #6b7280;
 
   --turquoise-bg-color: #08e8de;
   --white-bg-color: #ffffff;
+  --lilac-bg-color: #6b7280;
+  --light-gray-bg-color: #e2e8f0;
 
   --header-height: 60px;
 }

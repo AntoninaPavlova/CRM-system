@@ -79,7 +79,7 @@
 
 .crm-modal__content {
   background-color: var(--white-bg-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px var(--black-color);
 }
 
 .crm-modal__title {
@@ -87,18 +87,18 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--light-gray-color);
 }
 
 .crm-modal__title-text {
   font-size: 18px;
   font-weight: 600;
-  color: #1a202c;
+  color: var(--blue-color);
 }
 
 .crm-modal__title-highlight {
   font-size: 12px;
-  color: #6b7280;
+  color: var(--lilac-color);
   text-transform: uppercase;
 }
 
@@ -118,26 +118,25 @@
   font-size: 14px;
   font-weight: 500;
 
-  color: rgb(17 24 39);
+  color: var(--blue-color);
 }
 
 .crm-modal__input {
   width: 100%;
   padding: 10px;
 
-  color: #1a202c;
+  color: var(--black-color);
   font-size: 12px;
 
-  background-color: #f9fafb;
-  border: 1px solid #d1d5db;
+  background-color: var(--light-gray-bg-color);
   box-shadow: 0 0 0 0 transparent;
   outline: none;
   &:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+    border-color: var(--lilac-color);
+    box-shadow: 0 0 0 2px var(--lilac-color);
   }
   &:placeholder {
-    color: #d1d5db;
+    color: var(--light-gray-color);
   }
 }
 
@@ -154,7 +153,7 @@
   text-align: center;
   text-decoration: none;
 
-  background-color: var(--turquoise-bg-color);
+  background-color: var(--lilac-bg-color);
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s;
@@ -193,7 +192,7 @@
   margin-right: auto;
   height: 100%;
 
-  background-color: #4a5568;
+  background-color: var(--lilac-bg-color);
   opacity: 0.6;
 }
 </style>
