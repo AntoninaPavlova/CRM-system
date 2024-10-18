@@ -2,6 +2,21 @@
 import { appStore } from '@/stores/store.js';
 const useStore = appStore();
 
+const saveChanges = async () => {
+  try {
+    const index = useStore.departments.findIndex((elem) => elem.id === useStore.selectedDepartment.id);
+    if (index !== -1) {
+      useStore.departments[index] = { ...useStore.selectedDepartment };
+      useStore.selectedDepartment = null;
+      useStore.closeModal();
+    } else {
+      console.error('Департамент не найден');
+    }
+  } catch (error) {
+    console.error('Ошибка при сохранении изменений:', error);
+  }
+};
+
 const onClickCloseModal = () => {
   useStore.closeModal();
 };
@@ -23,17 +38,26 @@ const onClickCloseModal = () => {
 
       <!-- Modal body -->
       <div class="crm-modal__body">
-        <form class="crm-modal__form">
-          <div class="crm-modal__form-groups">
+        <form @submit.prevent="saveChanges" class="crm-modal__form">
+          <div v-if="useStore.selectedDepartment" class="crm-modal__form-groups">
             <div class="crm-modal__form-group">
               <label for="name" class="crm-modal__label">Название<sup>*</sup></label>
-              <input id="name" type="text" name="name" class="crm-modal__input" placeholder="" required="" />
+              <input
+                id="name"
+                v-model="useStore.selectedDepartment.name"
+                type="text"
+                name="name"
+                class="crm-modal__input"
+                placeholder=""
+                required=""
+              />
             </div>
 
             <div class="crm-modal__form-group">
               <label for="description" class="crm-modal__label">Описание<sup>*</sup></label>
               <input
                 id="description"
+                v-model="useStore.selectedDepartment.description"
                 type="text"
                 name="description"
                 class="crm-modal__input"
@@ -44,19 +68,32 @@ const onClickCloseModal = () => {
 
             <div class="crm-modal__form-group">
               <label for="number" class="crm-modal__label">Сотрудники<sup>*</sup></label>
-              <input id="number" type="text" name="number" class="crm-modal__input" placeholder="" required="" />
+              <input
+                id="number"
+                v-model="useStore.selectedDepartment.number"
+                type="text"
+                name="number"
+                class="crm-modal__input"
+                placeholder=""
+                required=""
+              />
             </div>
 
             <div class="crm-modal__form-group">
               <label for="head" class="crm-modal__label">Заведующий<sup>*</sup></label>
-              <input id="head" type="text" name="head" class="crm-modal__input" placeholder="" required="" />
+              <input
+                id="head"
+                v-model="useStore.selectedDepartment.head"
+                type="text"
+                name="head"
+                class="crm-modal__input"
+                placeholder=""
+                required=""
+              />
             </div>
           </div>
 
-          <div class="crm-modal__buttons">
-            <button type="submit" class="crm-modal__button crm-modal__button--save">Сохранить</button>
-            <button type="button" class="crm-modal__button crm-modal__button--delete">Удалить пользователя</button>
-          </div>
+          <button type="submit" class="crm-modal__button crm-modal__button--save">Сохранить</button>
         </form>
       </div>
 

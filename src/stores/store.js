@@ -5,6 +5,7 @@ export const appStore = defineStore('app-store', {
   state: () => ({
     departments: [],
     isEditModalOpen: false,
+    selectedDepartment: null,
   }),
   getters: {},
   actions: {
@@ -32,6 +33,7 @@ export const appStore = defineStore('app-store', {
     },
 
     closeModal() {
+      this.selectedDepartment = null;
       this.isEditModalOpen = false;
     },
   },
