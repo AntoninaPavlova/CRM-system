@@ -1,5 +1,10 @@
 <script setup>
+import { appStore } from '@/stores/store.js';
+
 import Sidebar from '@/components/Sidebar.vue';
+import ModalWindow from '@/components/modal/ModalWindow.vue';
+
+const useStore = appStore();
 </script>
 
 <template>
@@ -10,6 +15,7 @@ import Sidebar from '@/components/Sidebar.vue';
         <slot></slot>
       </div>
     </div>
+    <ModalWindow v-if="useStore.isEditModalOpen" />
   </main>
 </template>
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 export const appStore = defineStore('app-store', {
   state: () => ({
     departments: [],
+    isEditModalOpen: false,
   }),
   getters: {},
   actions: {
@@ -24,6 +25,14 @@ export const appStore = defineStore('app-store', {
       } catch (error) {
         console.error('Ошибка при удалении отдела:', error);
       }
+    },
+
+    openEditModal() {
+      this.isEditModalOpen = true;
+    },
+
+    closeModal() {
+      this.isEditModalOpen = false;
     },
   },
 });

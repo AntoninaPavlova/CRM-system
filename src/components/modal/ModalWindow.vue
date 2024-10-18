@@ -1,4 +1,11 @@
-<script setup></script>
+<script setup>
+import { appStore } from '@/stores/store.js';
+const useStore = appStore();
+
+const onClickCloseModal = () => {
+  useStore.closeModal();
+};
+</script>
 
 <template>
   <!-- Main modal -->
@@ -55,7 +62,7 @@
 
       <!-- Modal footer -->
       <div class="crm-modal__footer">
-        <button class="crm-modal__close-button">
+        <button @click="onClickCloseModal" class="crm-modal__close-button">
           <img class="crm-modal__close-icon" src="@/img/close.png" alt="close" width="15" height="15" />
         </button>
       </div>
@@ -153,7 +160,7 @@
   text-align: center;
   text-decoration: none;
 
-  background-color: var(--lilac-bg-color);
+  background-color: var(--turquoise-bg-color);
   border: none;
   border-radius: 5px;
   transition: background-color 0.3s;
