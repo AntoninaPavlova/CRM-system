@@ -2,19 +2,8 @@
 import { appStore } from '@/stores/store.js';
 const useStore = appStore();
 
-const saveChanges = async () => {
-  try {
-    const index = useStore.departments.findIndex((elem) => elem.id === useStore.selectedDepartment.id);
-    if (index !== -1) {
-      useStore.departments[index] = { ...useStore.selectedDepartment };
-      useStore.selectedDepartment = null;
-      useStore.closeModal();
-    } else {
-      console.error('Департамент не найден');
-    }
-  } catch (error) {
-    console.error('Ошибка при сохранении изменений:', error);
-  }
+const onClickSaveChanges = async () => {
+  await useStore.saveChanges();
 };
 
 const onClickCloseModal = () => {
@@ -38,7 +27,7 @@ const onClickCloseModal = () => {
 
       <!-- Modal body -->
       <div class="crm-modal__body">
-        <form @submit.prevent="saveChanges" class="crm-modal__form">
+        <form @submit.prevent="onClickSaveChanges" class="crm-modal__form">
           <div v-if="useStore.selectedDepartment" class="crm-modal__form-groups">
             <div class="crm-modal__form-group">
               <label for="name" class="crm-modal__label">Название<sup>*</sup></label>

@@ -50,9 +50,24 @@ app.delete('/api/departments/:id', async (req, res) => {
   try {
     const { id } = req.params;
     await Department.findByIdAndDelete(id);
-    res.status(204).send(); 
+    res.status(204).send();
   } catch (error) {
     res.status(500).json({ message: 'Ошибка при удалении отдела', error });
+  }
+});
+
+// API для обновления отдела
+app.put('/api/departments/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedDepartment = req.body; // Получаем данные из тела запроса
+    const department = await Department.findByIdAndUpdate(id, updatedDepartment, { new: true });
+    if (!department) {
+      return res.status(404).json({ message: 'Департамент не найден' });
+    }
+    res.json(department);
+  } catch (error) {
+    res.status(500).json({ message: 'Ошибка при обновлении отдела', error });
   }
 });
 
