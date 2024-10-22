@@ -6,6 +6,7 @@ export const appStore = defineStore('app-store', {
     departments: [],
     employees: [],
     isEditModalOpen: false,
+    isCreateModalOpen: false,
     selectedDepartment: null,
     selectedEmployee: null,
   }),
@@ -92,14 +93,20 @@ export const appStore = defineStore('app-store', {
       }
     },
 
+
     openEditModal() {
       this.isEditModalOpen = true;
+    },
+
+    openCreateModal() {
+      this.isCreateModalOpen = true;
     },
 
     closeModal() {
       this.selectedDepartment = null;
       this.selectedEmployee = null;
       this.isEditModalOpen = false;
+      this.isCreateModalOpen = false;
     },
   },
 });

@@ -27,6 +27,14 @@ const props = defineProps({
 .crm-table__names {
   display: grid;
   align-items: flex-end;
+
+  :nth-of-type(2),
+  :nth-of-type(3),
+  :nth-of-type(4),
+  :nth-of-type(5) {
+    justify-self: center;
+  }
+  
 }
 
 .names-departments {

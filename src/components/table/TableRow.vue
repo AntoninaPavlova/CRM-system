@@ -66,6 +66,13 @@ const onClickDelete = async () => {
   &:nth-last-of-type(1) {
     margin-bottom: 0;
   }
+  :nth-of-type(2),
+  :nth-of-type(3),
+  :nth-of-type(4),
+  :nth-of-type(5) {
+    justify-self: center;
+    text-align: center;
+  }
 }
 
 .crm-table__text {

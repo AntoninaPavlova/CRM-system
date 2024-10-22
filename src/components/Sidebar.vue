@@ -1,15 +1,19 @@
-<script setup></script>
+<script setup>
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+</script>
 
 <template>
   <div class="crm-sidebar">
     <ul сlass="crm-sidebar__list">
-      <li class="crm-sidebar__point">
+      <li class="crm-sidebar__point" :class="{ active: route.path === '/' }">
         <router-link :to="`/`" class="crm-sidebar__link">Главная</router-link>
       </li>
-      <li class="crm-sidebar__point">
+      <li class="crm-sidebar__point" :class="{ active: route.path === '/departments' }">
         <router-link :to="`/departments`" class="crm-sidebar__link">Департаменты</router-link>
       </li>
-      <li class="crm-sidebar__point">
+      <li class="crm-sidebar__point" :class="{ active: route.path === '/employees' }">
         <router-link :to="`/employees`" class="crm-sidebar__link">Сотрудники</router-link>
       </li>
     </ul>
@@ -53,6 +57,10 @@
   &:nth-last-of-type(1) {
     margin-bottom: 0;
   }
+}
+
+.crm-sidebar__point.active {
+  background-color: var(--light-gray-bg-color);
 }
 
 .crm-sidebar__link {

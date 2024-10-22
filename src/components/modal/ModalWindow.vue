@@ -1,7 +1,7 @@
 <script setup>
-import FormDepartment from '@/components/form/FormDepartment.vue';
-import FormEmployee from '@/components/form/FormEmployee.vue';
 import { appStore } from '@/stores/store.js';
+import FormEdit from '@/components/form/FormEdit.vue';
+import FormCreate from '@/components/form/FormCreate.vue';
 
 const useStore = appStore();
 
@@ -11,14 +11,6 @@ const props = defineProps({
     default: true,
   },
 });
-
-const onClickSaveChanges = async () => {
-  if (props.isDepartment) {
-    await useStore.saveDepartmentChanges();
-  } else {
-    await useStore.saveEmployeeChanges();
-  }
-};
 
 const onClickCloseModal = () => {
   useStore.closeModal();
@@ -33,17 +25,14 @@ const onClickCloseModal = () => {
       <!-- Modal header -->
       <div class="crm-modal__header">
         <div class="crm-modal__title">
-          <h3 class="crm-modal__title-text">Изменить данные:</h3>
+          <h3 class="crm-modal__title-text">Данные:</h3>
         </div>
       </div>
 
       <!-- Modal body -->
       <div class="crm-modal__body">
-        <form @submit.prevent="onClickSaveChanges" class="crm-modal__form">
-          <FormDepartment v-if="useStore.selectedDepartment" />
-          <FormEmployee v-else />
-          <button type="submit" class="crm-modal__button crm-modal__button--save">Сохранить</button>
-        </form>
+        <FormEdit v-if="useStore.isEditModalOpen" :isDepartment="isDepartment" />
+        <FormCreate v-if="useStore.isCreateModalOpen" :isDepartment="isDepartment" />
       </div>
 
       <!-- Modal footer -->
@@ -98,25 +87,6 @@ const onClickCloseModal = () => {
 .crm-modal__form {
   margin-bottom: 16px;
   padding: 20px;
-}
-
-.crm-modal__button--save {
-  margin: 0 auto;
-  padding: 10px 20px;
-
-  display: flex;
-
-  color: var(--black-color);
-  font-size: 16px;
-  cursor: pointer;
-
-  text-align: center;
-  text-decoration: none;
-
-  background-color: var(--turquoise-bg-color);
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
 }
 
 .crm-modal__button--delete {

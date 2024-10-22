@@ -12,10 +12,10 @@ const useStore = appStore();
 <template>
   <div class="crm-container">
     <Header />
-    <Main>
+    <Main :isDepartment="true">
       <div class="crm-table">
         <TableHeader
-          :headers="['Название департамента', 'Описание', 'Количество сотрудников', 'Заведующий', 'Действия']"
+          :headers="['Название департамента', 'Описание', 'Количество сотрудников', 'Заведующий', '']"
           :isDepartment="true"
         />
         <div class="crm-table__rows">

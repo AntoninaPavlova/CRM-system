@@ -1,15 +1,18 @@
 <script setup>
 import { onMounted } from 'vue';
-import { useRoute } from 'vue-router';
 import { appStore } from '@/stores/store.js';
 
 import Sidebar from '@/components/Sidebar.vue';
 import ModalWindow from '@/components/modal/ModalWindow.vue';
 
 const useStore = appStore();
-const route = useRoute(); 
 
-const isDepartment = route.path === '/departments';
+const props = defineProps({
+  isDepartment: {
+    type: Boolean,
+    default: true,
+  },
+});
 
 onMounted(async () => {
   await useStore.fetchDepartments();
@@ -26,6 +29,7 @@ onMounted(async () => {
       </div>
     </div>
     <ModalWindow v-if="useStore.isEditModalOpen" :isDepartment="isDepartment" />
+    <ModalWindow v-if="useStore.isCreateModalOpen" :isDepartment="isDepartment" />
   </main>
 </template>
 
