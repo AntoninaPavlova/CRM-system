@@ -10,7 +10,7 @@
         <router-link :to="`/departments`" class="crm-sidebar__link">Департаменты</router-link>
       </li>
       <li class="crm-sidebar__point">
-        <router-link :to="`/staff`" class="crm-sidebar__link">Сотрудники</router-link>
+        <router-link :to="`/employees`" class="crm-sidebar__link">Сотрудники</router-link>
       </li>
     </ul>
   </div>

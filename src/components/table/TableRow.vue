@@ -1,38 +1,52 @@
 <script setup>
 import { appStore } from '@/stores/store.js';
 const useStore = appStore();
-
 const props = defineProps({
-  department: {
+  rowData: {
     type: Object,
     required: true,
+  },
+  isDepartment: {
+    type: Boolean,
+    default: true,
   },
 });
 
 const truncateDescription = (description) => {
-  return description.substring(0, 18) + ' ...';
+  return description.length > 18 ? description.substring(0, 18) + ' ...' : description;
 };
 
-const onClickEditDepartment = (department) => {
-  useStore.selectedDepartment = { ...department };
-  useStore.openEditModal();
+const onClickEdit = () => {
+  if (props.isDepartment) {
+    useStore.selectedDepartment = { ...props.rowData };
+    useStore.openEditModal();
+  } else {
+    useStore.selectedEmployee = { ...props.rowData };
+    useStore.openEditModal();
+  }
 };
 
-const onClickDeleteDepartment = async (id) => {
-  await useStore.deleteDepartment(id);
+const onClickDelete = async () => {
+  if (props.isDepartment) {
+    await useStore.deleteDepartment(props.rowData._id);
+  } else {
+    await useStore.deleteEmployee(props.rowData._id);
+  }
 };
 </script>
 
 <template>
-  <div class="crm-table__row">
-    <div class="crm-table__text">{{ department.name }}</div>
-    <div class="crm-table__text">{{ truncateDescription(department.description) }}</div>
-    <div class="crm-table__text">{{ department.number }}</div>
-    <div class="crm-table__text">{{ department.head }}</div>
-    <button @click="onClickEditDepartment(department)" class="crm-table__button crm-table__edit-button">
+  <div :class="['crm-table__row', isDepartment ? 'row-department' : 'row-employee']">
+    <div class="crm-table__text">{{ isDepartment ? rowData.name : rowData.firstName }}</div>
+    <div class="crm-table__text">{{ isDepartment ? truncateDescription(rowData.description) : rowData.lastName }}</div>
+    <div class="crm-table__text">{{ isDepartment ? rowData.number : rowData.age }}</div>
+    <div class="crm-table__text">{{ isDepartment ? rowData.head : rowData.department }}</div>
+    <div class="crm-table__text" v-if="!isDepartment">{{ rowData.technologies.join(', ') }}</div>
+
+    <button @click="onClickEdit" class="crm-table__button crm-table__edit-button">
       <img src="@/img/edit.png" alt="edit" width="23" height="23" />
     </button>
-    <button @click="onClickDeleteDepartment(department._id)" class="crm-table__button crm-table__delete-button">
+    <button @click="onClickDelete" class="crm-table__button crm-table__delete-button">
       <img src="@/img/delete.png" alt="delete" width="23" height="23" />
     </button>
   </div>
@@ -45,7 +59,6 @@ const onClickDeleteDepartment = async (id) => {
 
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
 
   border-radius: 10px;
 
@@ -62,5 +75,13 @@ const onClickDeleteDepartment = async (id) => {
 
 .crm-table__button {
   cursor: pointer;
+}
+
+.row-department {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.row-employee {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 </style>

@@ -1,9 +1,23 @@
 <script setup>
+import FormDepartment from '@/components/form/FormDepartment.vue';
+import FormEmployee from '@/components/form/FormEmployee.vue';
 import { appStore } from '@/stores/store.js';
+
 const useStore = appStore();
 
+const props = defineProps({
+  isDepartment: {
+    type: Boolean,
+    default: true,
+  },
+});
+
 const onClickSaveChanges = async () => {
-  await useStore.saveChanges();
+  if (props.isDepartment) {
+    await useStore.saveDepartmentChanges();
+  } else {
+    await useStore.saveEmployeeChanges();
+  }
 };
 
 const onClickCloseModal = () => {
@@ -19,69 +33,15 @@ const onClickCloseModal = () => {
       <!-- Modal header -->
       <div class="crm-modal__header">
         <div class="crm-modal__title">
-          <h3 class="crm-modal__title-text">
-            Изменить данные: <span class="crm-modal__title-highlight">департамента</span>
-          </h3>
+          <h3 class="crm-modal__title-text">Изменить данные:</h3>
         </div>
       </div>
 
       <!-- Modal body -->
       <div class="crm-modal__body">
         <form @submit.prevent="onClickSaveChanges" class="crm-modal__form">
-          <div v-if="useStore.selectedDepartment" class="crm-modal__form-groups">
-            <div class="crm-modal__form-group">
-              <label for="name" class="crm-modal__label">Название<sup>*</sup></label>
-              <input
-                id="name"
-                v-model="useStore.selectedDepartment.name"
-                type="text"
-                name="name"
-                class="crm-modal__input"
-                placeholder=""
-                required=""
-              />
-            </div>
-
-            <div class="crm-modal__form-group">
-              <label for="description" class="crm-modal__label">Описание<sup>*</sup></label>
-              <input
-                id="description"
-                v-model="useStore.selectedDepartment.description"
-                type="text"
-                name="description"
-                class="crm-modal__input"
-                placeholder=""
-                required=""
-              />
-            </div>
-
-            <div class="crm-modal__form-group">
-              <label for="number" class="crm-modal__label">Сотрудники<sup>*</sup></label>
-              <input
-                id="number"
-                v-model="useStore.selectedDepartment.number"
-                type="text"
-                name="number"
-                class="crm-modal__input"
-                placeholder=""
-                required=""
-              />
-            </div>
-
-            <div class="crm-modal__form-group">
-              <label for="head" class="crm-modal__label">Заведующий<sup>*</sup></label>
-              <input
-                id="head"
-                v-model="useStore.selectedDepartment.head"
-                type="text"
-                name="head"
-                class="crm-modal__input"
-                placeholder=""
-                required=""
-              />
-            </div>
-          </div>
-
+          <FormDepartment v-if="useStore.selectedDepartment" />
+          <FormEmployee v-else />
           <button type="submit" class="crm-modal__button crm-modal__button--save">Сохранить</button>
         </form>
       </div>
@@ -138,39 +98,6 @@ const onClickCloseModal = () => {
 .crm-modal__form {
   margin-bottom: 16px;
   padding: 20px;
-}
-
-.crm-modal__form-group {
-  margin-bottom: 16px;
-}
-
-.crm-modal__label {
-  display: block;
-  margin-bottom: 8px;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  color: var(--blue-color);
-}
-
-.crm-modal__input {
-  width: 100%;
-  padding: 10px;
-
-  color: var(--black-color);
-  font-size: 12px;
-
-  background-color: var(--light-gray-bg-color);
-  box-shadow: 0 0 0 0 transparent;
-  outline: none;
-  &:focus {
-    border-color: var(--lilac-color);
-    box-shadow: 0 0 0 2px var(--lilac-color);
-  }
-  &:placeholder {
-    color: var(--light-gray-color);
-  }
 }
 
 .crm-modal__button--save {

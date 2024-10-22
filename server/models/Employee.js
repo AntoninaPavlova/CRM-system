@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const staffSchema = new mongoose.Schema({
+const employeeSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   age: Number,
@@ -8,4 +8,4 @@ const staffSchema = new mongoose.Schema({
   technologies: [String],
 });
 
-module.exports = mongoose.model('Staff', staffSchema);
+module.exports = mongoose.model('Employee', employeeSchema);

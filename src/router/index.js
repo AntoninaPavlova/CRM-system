@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import StartPage from '@/pages/StartPage.vue';
 import DepartmentsPage from '@/pages/DepartmentsPage.vue';
-import StaffPage from '@/pages/StaffPage.vue';
+import EmployeesPage from '@/pages/EmployeesPage.vue';
 import { Routes } from '@/consts/Routes';
 
 const routes = [
@@ -14,8 +14,8 @@ const routes = [
     component: DepartmentsPage,
   },
   {
-    ...Routes.STAFF,
-    component: StaffPage,
+    ...Routes.EMPLOYEES,
+    component: EmployeesPage,
   },
 ];
 

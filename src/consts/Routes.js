@@ -13,11 +13,11 @@ const Routes = {
       title: 'Departments',
     },
   },
-  STAFF: {
-    name: 'Staff',
-    path: '/staff',
+  EMPLOYEES: {
+    name: 'Employees',
+    path: '/employees',
     meta: {
-      title: 'Staff',
+      title: 'Employees',
     },
   },
 };

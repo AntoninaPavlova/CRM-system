@@ -15,20 +15,18 @@ const useStore = appStore();
     <Main>
       <div class="crm-table">
         <TableHeader
-          :headers="['Название департамента', 'Описание', 'Количество сотрудников', 'Заведующий', 'Действия']"
-          :isDepartment="true"
+          :headers="['Имя', 'Фамилия', 'Возраст', 'Департамент', 'Технологии', 'Действия']"
+          :isDepartment="false"
         />
         <div class="crm-table__rows">
           <TableRow
-            v-for="department in useStore.departments"
-            :key="department._id"
-            :rowData="department"
-            :isDepartment="true"
+            v-for="employee in useStore.employees"
+            :key="employee._id"
+            :rowData="employee"
+            :isDepartment="false"
           />
         </div>
       </div>
     </Main>
   </div>
 </template>
-
-<style scoped></style>
