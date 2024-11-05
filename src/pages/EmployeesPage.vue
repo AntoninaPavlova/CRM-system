@@ -7,6 +7,8 @@ import TableHeader from '@/components/table/TableHeader.vue';
 import TableRow from '@/components/table/TableRow.vue';
 
 const useStore = appStore();
+
+const headers = ['Имя', 'Фамилия', 'Возраст', 'Департамент', 'Технологии', ''];
 </script>
 
 <template>
@@ -14,10 +16,7 @@ const useStore = appStore();
     <Header :isDepartment="false" />
     <Main :isDepartment="false">
       <div class="crm-table">
-        <TableHeader
-          :headers="['Имя', 'Фамилия', 'Возраст', 'Департамент', 'Технологии', '']"
-          :isDepartment="false"
-        />
+        <TableHeader :headers="headers" :isDepartment="false" />
         <div class="crm-table__rows">
           <TableRow
             v-for="employee in useStore.employees"
