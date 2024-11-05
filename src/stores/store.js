@@ -9,6 +9,7 @@ export const appStore = defineStore('app-store', {
     isCreateModalOpen: false,
     selectedDepartment: null,
     selectedEmployee: null,
+    openedDepartment: null,
   }),
   getters: {},
   actions: {
@@ -18,6 +19,16 @@ export const appStore = defineStore('app-store', {
         this.departments = response.data;
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
+      }
+    },
+
+    async fetchDepartmentById(id) {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/departments/${id}`);
+        this.openedDepartment = response.data;
+      } catch (error) {
+        console.error('Error fetching department:', error);
+        this.openedDepartment = null;
       }
     },
 
@@ -92,7 +103,6 @@ export const appStore = defineStore('app-store', {
         console.error('Ошибка при сохранении изменений:', error);
       }
     },
-
 
     openEditModal() {
       this.isEditModalOpen = true;

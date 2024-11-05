@@ -1,6 +1,9 @@
 <script setup>
 import { appStore } from '@/stores/store.js';
+import { useRouter } from 'vue-router';
+
 const useStore = appStore();
+const router = useRouter();
 const props = defineProps({
   rowData: {
     type: Object,
@@ -33,12 +36,20 @@ const onClickDelete = async () => {
     await useStore.deleteEmployee(props.rowData._id);
   }
 };
+
+const goToDepartmentDetails = (id) => {
+  router.push(`/departments/${id}`);
+};
 </script>
 
 <template>
   <div :class="['crm-table__row', isDepartment ? 'row-department' : 'row-employee']">
-    <div class="crm-table__text">{{ isDepartment ? rowData.name : rowData.firstName }}</div>
-    <div class="crm-table__text">{{ isDepartment ? truncateDescription(rowData.description) : rowData.lastName }}</div>
+    <div class="crm-table__text">
+      {{ isDepartment ? rowData.name : rowData.firstName }}
+    </div>
+    <div class="crm-table__text" @click="goToDepartmentDetails(rowData._id)">
+      {{ isDepartment ? truncateDescription(rowData.description) : rowData.lastName }}
+    </div>
     <div class="crm-table__text">{{ isDepartment ? rowData.number : rowData.age }}</div>
     <div class="crm-table__text">{{ isDepartment ? rowData.head : rowData.department }}</div>
     <div class="crm-table__text" v-if="!isDepartment">{{ rowData.technologies.join(', ') }}</div>
@@ -78,6 +89,9 @@ const onClickDelete = async () => {
 .crm-table__text {
   padding: 10px 0;
   font-size: 16px;
+  &:nth-of-type(2) {
+    cursor: pointer;
+  }
 }
 
 .crm-table__button {

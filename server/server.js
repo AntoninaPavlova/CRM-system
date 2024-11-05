@@ -35,6 +35,20 @@ app.get('/api/departments', async (req, res) => {
   }
 });
 
+// API для получения отдела по id
+app.get('/api/departments/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const department = await Department.findById(id);
+    if (!department) {
+      return res.status(404).json({ message: 'Отдел не найден' });
+    }
+    res.json(department);
+  } catch (error) {
+    res.status(500).json({ message: 'Ошибка при получении отдела', error });
+  }
+});
+
 // API для сотрудников
 app.get('/api/employees', async (req, res) => {
   try {
@@ -71,7 +85,7 @@ app.delete('/api/employees/:id', async (req, res) => {
 app.put('/api/departments/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedDepartment = req.body; 
+    const updatedDepartment = req.body;
     const department = await Department.findByIdAndUpdate(id, updatedDepartment, { new: true });
     if (!department) {
       return res.status(404).json({ message: 'Департамент не найден' });
@@ -86,7 +100,7 @@ app.put('/api/departments/:id', async (req, res) => {
 app.put('/api/employees/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedEmployee = req.body; 
+    const updatedEmployee = req.body;
     const employee = await Employee.findByIdAndUpdate(id, updatedEmployee, { new: true });
     if (!employee) {
       return res.status(404).json({ message: 'Сотрудник не найден' });

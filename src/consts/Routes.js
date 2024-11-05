@@ -13,6 +13,13 @@ const Routes = {
       title: 'Departments',
     },
   },
+  DEPARTMENTID: {
+    name: 'DepartmentId',
+    path: '/departments/:id',
+    meta: {
+      title: 'DepartmentId',
+    },
+  },
   EMPLOYEES: {
     name: 'Employees',
     path: '/employees',

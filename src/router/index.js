@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import StartPage from '@/pages/StartPage.vue';
 import DepartmentsPage from '@/pages/DepartmentsPage.vue';
+import DepartmentIdPage from '@/pages/DepartmentIdPage.vue';
 import EmployeesPage from '@/pages/EmployeesPage.vue';
 import { Routes } from '@/consts/Routes';
 
@@ -12,6 +13,10 @@ const routes = [
   {
     ...Routes.DEPARTMENTS,
     component: DepartmentsPage,
+  },
+  {
+    ...Routes.DEPARTMENTID,
+    component: DepartmentIdPage,
   },
   {
     ...Routes.EMPLOYEES,
