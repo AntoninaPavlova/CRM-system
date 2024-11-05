@@ -48,10 +48,10 @@ const goToDepartmentDetails = (id) => {
 
 <template>
   <div :class="['crm-table__row', isDepartment ? 'row-department' : 'row-employee']">
-    <div class="crm-table__text">
+    <div class="crm-table__text" @click="goToDepartmentDetails(rowData._id)">
       {{ isDepartment ? rowData.name : rowData.firstName }}
     </div>
-    <div class="crm-table__text" @click="goToDepartmentDetails(rowData._id)">
+    <div class="crm-table__text">
       {{ isDepartment ? truncateDescription(rowData.description) : rowData.lastName }}
     </div>
     <div class="crm-table__text">{{ isDepartment ? rowData.number : rowData.age }}</div>
@@ -93,7 +93,7 @@ const goToDepartmentDetails = (id) => {
 .crm-table__text {
   padding: 10px 0;
   font-size: 16px;
-  &:nth-of-type(2) {
+  &:nth-of-type(1) {
     cursor: pointer;
   }
 }

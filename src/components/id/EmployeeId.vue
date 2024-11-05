@@ -14,8 +14,12 @@ const goBack = () => {
   <div class="crm-container">
     <Header />
     <Main>
-      <p v-if="useStore.openedEmployee" class="crm-description">{{ useStore.openedEmployee.lastName }}</p>
-      <p v-else>Загрузка...</p>
+      <div v-if="useStore.openedEmployee" class="crm-info">
+        <p class="crm-info__text">{{ useStore.openedEmployee.firstName }} {{ useStore.openedEmployee.lastName }}</p>
+      </div>
+      <div v-else class="crm-loading">
+        <p class="crm-loading__text">Загрузка...</p>
+      </div>
 
       <button @click="goBack" class="crm-backbutton">Назад</button>
     </Main>
@@ -23,7 +27,7 @@ const goBack = () => {
 </template>
 
 <style>
-.crm-description {
+.crm-info__text {
   padding: 10px 0;
   font-size: 16px;
 }
