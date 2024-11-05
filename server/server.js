@@ -59,6 +59,20 @@ app.get('/api/employees', async (req, res) => {
   }
 });
 
+// API для получения сотрудника по id
+app.get('/api/employees/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const employee = await Employee.findById(id);
+    if (!employee) {
+      return res.status(404).json({ message: 'Сотрудник не найден' });
+    }
+    res.json(employee);
+  } catch (error) {
+    res.status(500).json({ message: 'Ошибка при получении сотрудника', error });
+  }
+});
+
 // API для удаления отдела
 app.delete('/api/departments/:id', async (req, res) => {
   try {

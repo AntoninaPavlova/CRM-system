@@ -3,6 +3,7 @@ import StartPage from '@/pages/StartPage.vue';
 import DepartmentsPage from '@/pages/DepartmentsPage.vue';
 import DepartmentIdPage from '@/pages/DepartmentIdPage.vue';
 import EmployeesPage from '@/pages/EmployeesPage.vue';
+import EmployeeIdPage from '@/pages/EmployeeIdPage.vue';
 import { Routes } from '@/consts/Routes';
 
 const routes = [
@@ -21,6 +22,10 @@ const routes = [
   {
     ...Routes.EMPLOYEES,
     component: EmployeesPage,
+  },
+  {
+    ...Routes.EMPLOYEEID,
+    component: EmployeeIdPage,
   },
 ];
 

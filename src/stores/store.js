@@ -10,6 +10,7 @@ export const appStore = defineStore('app-store', {
     selectedDepartment: null,
     selectedEmployee: null,
     openedDepartment: null,
+    openedEmployee: null,
   }),
   getters: {},
   actions: {
@@ -38,6 +39,16 @@ export const appStore = defineStore('app-store', {
         this.employees = response.data;
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
+      }
+    },
+
+    async fetchEmployeeById(id) {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/employees/${id}`);
+        this.openedEmployee = response.data;
+      } catch (error) {
+        console.error('Error fetching employee:', error);
+        this.openedEmployee = null;
       }
     },
 

@@ -27,6 +27,13 @@ const Routes = {
       title: 'Employees',
     },
   },
+  EMPLOYEEID: {
+    name: 'EmployeeId',
+    path: '/employees/:id',
+    meta: {
+      title: 'EmployeeId',
+    },
+  },
 };
 
 export { Routes };

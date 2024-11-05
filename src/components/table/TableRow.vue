@@ -38,7 +38,11 @@ const onClickDelete = async () => {
 };
 
 const goToDepartmentDetails = (id) => {
-  router.push(`/departments/${id}`);
+  if (props.isDepartment) {
+    router.push(`/departments/${id}`);
+  } else {
+    router.push(`/employees/${id}`);
+  }
 };
 </script>
 
