@@ -20,11 +20,7 @@ const buttonText = computed(() => {
 });
 
 const onClickCreate = () => {
-  if (route.path === '/departments') {
-    useStore.openCreateModal();
-  } else if (route.path === '/employees') {
-    useStore.openCreateModal();
-  }
+  useStore.openCreateModal();
 };
 </script>
 
@@ -63,11 +59,11 @@ const onClickCreate = () => {
   font-size: 16px;
   font-weight: 400;
   border-radius: 6px;
-  background-color: var(--white-color);
+  background-color: var(--white-bg-color);
   cursor: pointer;
 }
 
 .crm-header__btn:hover {
-  background-color: var(--light-gray-color);
+  background-color: var(--light-gray-bg-color);
 }
 </style>

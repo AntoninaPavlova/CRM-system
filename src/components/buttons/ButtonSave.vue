@@ -1,9 +1,9 @@
 <template>
-  <button type="submit" class="crm-modal__button crm-modal__button--save">Сохранить</button>
+  <button type="submit" class="crm-button button--save">Сохранить</button>
 </template>
 
 <style scoped>
-.crm-modal__button--save {
+.button--save {
   margin: 0 auto;
   padding: 10px 20px;
 

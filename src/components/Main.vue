@@ -7,12 +7,6 @@ import ModalWindow from '@/components/modal/ModalWindow.vue';
 
 const useStore = appStore();
 
-const props = defineProps({
-  isDepartment: {
-    type: Boolean,
-    default: true,
-  },
-});
 
 onMounted(async () => {
   await useStore.fetchDepartments();
@@ -28,8 +22,8 @@ onMounted(async () => {
         <slot></slot>
       </div>
     </div>
-    <ModalWindow v-if="useStore.isEditModalOpen" :isDepartment="isDepartment" />
-    <ModalWindow v-if="useStore.isCreateModalOpen" :isDepartment="isDepartment" />
+    <ModalWindow v-if="useStore.isEditModalOpen"/>
+    <ModalWindow v-if="useStore.isCreateModalOpen" />
   </main>
 </template>
 

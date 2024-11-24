@@ -57,6 +57,9 @@ const route = useRoute();
   &:nth-last-of-type(1) {
     margin-bottom: 0;
   }
+  &:hover {
+    background-color: var(--light-gray-bg-color);
+  }
 }
 
 .crm-sidebar__point.active {

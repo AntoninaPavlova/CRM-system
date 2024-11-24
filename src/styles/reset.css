@@ -9,11 +9,12 @@
   --black-color: #000000;
   --light-gray-color: #e2e8f0;
   --blue-color: #1a202c;
+  --dark-gray-color: #6b7280;
 
   --turquoise-bg-color: #08e8de;
   --white-bg-color: #ffffff;
-  --lilac-bg-color: #6b7280;
-  --light-gray-bg-color: #e2e8f0;
+  --light-gray-bg-color: #f5f5f5;
+  --dark-gray-bg-color: #6b7280;
 
   --header-height: 60px;
 }

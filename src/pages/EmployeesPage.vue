@@ -31,6 +31,7 @@ const onClickDetails = (id) => {
 
 const onClickEdit = (row) => {
   useStore.selectedEmployee = { ...row };
+  console.log('> EmployeesPage -> onClickEdit, Редактируемый сотрудник:', useStore.selectedEmployee);
   useStore.openEditModal();
 };
 
@@ -41,8 +42,8 @@ const onClickDelete = async (id) => {
 
 <template>
   <div class="crm-container">
-    <Header :isDepartment="false" />
-    <Main :isDepartment="false">
+    <Header />
+    <Main>
       <DataTableEmployees
         :columns="employeeColumns"
         :rows="useStore.employees"
@@ -54,5 +55,3 @@ const onClickDelete = async (id) => {
     </Main>
   </div>
 </template>
-
-

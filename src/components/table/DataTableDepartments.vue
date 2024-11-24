@@ -14,11 +14,15 @@ const props = defineProps({
   <div class="crm-table">
     <vue-good-table :columns="columns" :rows="rows" :pagination-options="paginationOptions">
       <template v-slot:table-row="props">
-        <div v-if="props.column.field == 'name'" class="crm-table__cell" @click="onClickDetails(props.row._id)">
+        <div v-if="props.column.field == 'name'" class="crm-table__cell">
           {{ props.row.name }}
         </div>
 
-        <div v-else-if="props.column.field == 'description'" class="crm-table__cell">
+        <div
+          v-else-if="props.column.field == 'description'"
+          class="crm-table__cell cell--description"
+          @click="onClickDetails(props.row._id)"
+        >
           {{ truncateDescription(props.row.description) }}
         </div>
 
@@ -39,8 +43,11 @@ const props = defineProps({
 </template>
 
 <style scoped>
-.crm-table__cell {
+.cell--description {
   cursor: pointer;
+  &:hover {
+    text-decoration: underline; 
+  }
 }
 
 .crm-table__button {

@@ -5,12 +5,15 @@ export const appStore = defineStore('app-store', {
   state: () => ({
     departments: [],
     employees: [],
+
     isEditModalOpen: false,
     isCreateModalOpen: false,
+
     selectedDepartment: null,
     selectedEmployee: null,
-    openedDepartment: null,
-    openedEmployee: null,
+
+    editingDepartment: null,
+    editingEmployee: null,
   }),
   getters: {},
   actions: {
@@ -26,10 +29,10 @@ export const appStore = defineStore('app-store', {
     async fetchDepartmentById(id) {
       try {
         const response = await axios.get(`http://localhost:5000/api/departments/${id}`);
-        this.openedDepartment = response.data;
+        this.selectedDepartment = response.data;
       } catch (error) {
         console.error('Error fetching department:', error);
-        this.openedDepartment = null;
+        this.selectedDepartment = null;
       }
     },
 
@@ -45,10 +48,10 @@ export const appStore = defineStore('app-store', {
     async fetchEmployeeById(id) {
       try {
         const response = await axios.get(`http://localhost:5000/api/employees/${id}`);
-        this.openedEmployee = response.data;
+        this.selectedEmployee = response.data;
       } catch (error) {
         console.error('Error fetching employee:', error);
-        this.openedEmployee = null;
+        this.selectedEmployee = null;
       }
     },
 
@@ -75,13 +78,13 @@ export const appStore = defineStore('app-store', {
     async saveDepartmentChanges() {
       try {
         const index = this.departments.findIndex((elem) => elem._id === this.selectedDepartment._id);
+
         if (index !== -1) {
           const response = await axios.put(
-            ` http://localhost:5000/api/departments/${this.selectedDepartment._id}`,
+            `http://localhost:5000/api/departments/${this.selectedDepartment._id}`,
             this.selectedDepartment
           );
           this.departments[index] = response.data;
-          this.selectedDepartment = null;
           this.closeModal();
         } else {
           console.error('Департамент не найден');
@@ -92,20 +95,16 @@ export const appStore = defineStore('app-store', {
     },
 
     async saveEmployeeChanges() {
-      if (!this.selectedEmployee || !this.selectedEmployee._id) {
-        console.error('Сотрудник не выбран или ID отсутствует');
-        return;
-      }
-
       try {
         const index = this.employees.findIndex((elem) => elem._id === this.selectedEmployee._id);
+
         if (index !== -1) {
           const response = await axios.put(
             `http://localhost:5000/api/employees/${this.selectedEmployee._id}`,
             this.selectedEmployee
           );
+
           this.employees[index] = response.data;
-          this.selectedEmployee = null;
           this.closeModal();
         } else {
           console.error('Сотрудник не найден');
@@ -124,8 +123,9 @@ export const appStore = defineStore('app-store', {
     },
 
     closeModal() {
-      this.selectedDepartment = null;
-      this.selectedEmployee = null;
+      this.editingDepartment = null;
+      this.editingEmployee = null;
+
       this.isEditModalOpen = false;
       this.isCreateModalOpen = false;
     },

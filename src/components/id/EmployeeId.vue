@@ -1,50 +1,71 @@
 <script setup>
 import { appStore } from '@/stores/store.js';
 
-import Header from '@/components/Header.vue';
-import Main from '@/components/Main.vue';
+import ButtonBack from '@/components/buttons/ButtonBack.vue';
+import ButtonEdit from '@/components/buttons/ButtonEdit.vue';
 
 const useStore = appStore();
-const goBack = () => {
-  window.history.back();
-};
+
+const props = defineProps({
+  onClickEdit: Function,
+  onClickGoBack: Function,
+});
 </script>
 
 <template>
-  <div class="crm-container">
-    <Header />
-    <Main>
-      <div v-if="useStore.openedEmployee" class="crm-info">
-        <p class="crm-info__text">{{ useStore.openedEmployee.firstName }} {{ useStore.openedEmployee.lastName }}</p>
+  <div v-if="useStore.selectedEmployee" class="crm-info">
+    <div class="crm-info__coll">
+      <div class="crm-info__item">
+        <p class="crm-info__text crm-info__name">
+          {{ useStore.selectedEmployee.firstName }} {{ useStore.selectedEmployee.lastName }}
+        </p>
+        <p class="crm-info__text crm-info__age">Возраст: {{ useStore.selectedEmployee.age }}</p>
+        <p class="crm-info__text crm-info__department">Департамент: {{ useStore.selectedEmployee.department }}</p>
+        <p class="crm-info__text crm-info__technologies">
+          Технологии: {{ useStore.selectedEmployee.technologies.join(', ') }}
+        </p>
       </div>
-      <div v-else class="crm-loading">
-        <p class="crm-loading__text">Загрузка...</p>
+      <div class="crm-info__item">
+        <ButtonEdit :onClickEdit="onClickEdit" />
       </div>
-
-      <button @click="goBack" class="crm-backbutton">Назад</button>
-    </Main>
+    </div>
   </div>
+  <div v-else class="crm-loading">
+    <p class="crm-loading__text">Загрузка...</p>
+  </div>
+
+  <ButtonBack :onClickGoBack="onClickGoBack" />
 </template>
 
-<style>
+<style scoped>
+.crm-info {
+  margin: 15px;
+  padding: 20px;
+
+  background-color: var(--light-gray-bg-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.crm-info__coll {
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+
+.crm-info__item {
+  &:nth-last-of-type(1) {
+    justify-self: flex-end;
+  }
+}
+
+.crm-info__name {
+  font-weight: bold;
+}
+
 .crm-info__text {
   padding: 10px 0;
   font-size: 16px;
-}
 
-.crm-backbutton {
-  max-width: 150px;
-  width: 100%;
-  height: 28px;
-  margin: 0 auto 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  color: var(--black-color);
-  font-weight: 400;
-  border-radius: 6px;
-  background-color: var(--turquoise-bg-color);
-  cursor: pointer;
+  color: var(--dark-gray-color);
 }
 </style>

@@ -30,6 +30,7 @@ const onClickDetails = (id) => {
 
 const onClickEdit = (row) => {
   useStore.selectedDepartment = { ...row };
+  console.log('> DepartmentsPage -> onClickEdit, Редактируемый департамент:', useStore.selectedDepartment);
   useStore.openEditModal();
 };
 
@@ -45,7 +46,7 @@ const truncateDescription = (description) => {
 <template>
   <div class="crm-container">
     <Header />
-    <Main :isDepartment="true">
+    <Main>
       <DataTableDepartments
         :columns="departmentColumns"
         :rows="useStore.departments"

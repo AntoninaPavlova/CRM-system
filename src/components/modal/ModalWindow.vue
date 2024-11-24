@@ -5,12 +5,6 @@ import FormCreate from '@/components/form/FormCreate.vue';
 
 const useStore = appStore();
 
-const props = defineProps({
-  isDepartment: {
-    type: Boolean,
-    default: true,
-  },
-});
 
 const onClickCloseModal = () => {
   useStore.closeModal();
@@ -31,8 +25,8 @@ const onClickCloseModal = () => {
 
       <!-- Modal body -->
       <div class="crm-modal__body">
-        <FormEdit v-if="useStore.isEditModalOpen" :isDepartment="isDepartment" />
-        <FormCreate v-if="useStore.isCreateModalOpen" :isDepartment="isDepartment" />
+        <FormEdit v-if="useStore.isEditModalOpen" />
+        <FormCreate v-if="useStore.isCreateModalOpen" />
       </div>
 
       <!-- Modal footer -->
@@ -122,7 +116,7 @@ const onClickCloseModal = () => {
   margin-right: auto;
   height: 100%;
 
-  background-color: var(--lilac-bg-color);
+  background-color: var(--dark-gray-bg-color);
   opacity: 0.6;
 }
 </style>
