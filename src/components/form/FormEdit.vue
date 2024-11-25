@@ -14,10 +14,8 @@ const isDepartmentPage = route.path === '/departments' || route.path.startsWith(
 const onClickSaveChanges = async () => {
   if (isDepartmentPage) {
     await useStore.saveDepartmentChanges();
-    console.log('> FormEdit -> onClickSaveChanges, Страница Департамента:');
   } else {
     await useStore.saveEmployeeChanges();
-    console.log('> FormEdit -> onClickSaveChanges, Страница Сотрудник:');
   }
 };
 </script>

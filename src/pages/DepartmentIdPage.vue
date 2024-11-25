@@ -17,7 +17,6 @@ onMounted(async () => {
 const onClickEdit = () => {
   if (useStore.selectedDepartment) {
     useStore.editingDepartment = { ...useStore.selectedDepartment };
-    console.log('> DepartmentId -> onClickEdit, Выбранный департамент:', useStore.selectedDepartment);
     useStore.openEditModal();
   }
 };

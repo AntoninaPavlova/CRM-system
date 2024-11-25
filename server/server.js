@@ -125,6 +125,28 @@ app.put('/api/employees/:id', async (req, res) => {
   }
 });
 
+// API для создания нового отдела
+app.post('/api/departments', async (req, res) => {
+  try {
+    const newDepartment = new Department(req.body);
+    await newDepartment.save();
+    res.status(201).json(newDepartment);
+  } catch (error) {
+    res.status(500).json({ message: 'Ошибка при создании нового отдела', error });
+  }
+});
+
+// API для создания нового сотрудника
+app.post('/api/employees', async (req, res) => {
+  try {
+    const newEmployee = new Employee(req.body);
+    await newEmployee.save();
+    res.status(201).json(newEmployee);
+  } catch (error) {
+    res.status(500).json({ message: 'Ошибка при создании нового сотрудника', error });
+  }
+});
+
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);

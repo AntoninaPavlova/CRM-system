@@ -1,27 +1,70 @@
 <script setup>
+import { appStore } from '@/stores/store.js';
+
+const useStore = appStore();
 </script>
 
 <template>
   <div class="crm-modal__form-groups">
     <div class="crm-modal__form-group">
       <label for="firstName" class="crm-modal__label">Имя<sup>*</sup></label>
-      <input id="firstName" type="text" name="firstName" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model="useStore.newEmployee.firstName"
+        id="firstName"
+        type="text"
+        name="firstName"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
     <div class="crm-modal__form-group">
       <label for="lastName" class="crm-modal__label">Фамилия<sup>*</sup></label>
-      <input id="lastName" type="text" name="lastName" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model="useStore.newEmployee.lastName"
+        id="lastName"
+        type="text"
+        name="lastName"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
     <div class="crm-modal__form-group">
       <label for="age" class="crm-modal__label">Возраст<sup>*</sup></label>
-      <input id="age" type="number" name="age" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model.number="useStore.newEmployee.age"
+        id="age"
+        type="number"
+        name="age"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
     <div class="crm-modal__form-group">
       <label for="department" class="crm-modal__label">Департамент<sup>*</sup></label>
-      <input id="department" type="text" name="department" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model="useStore.newEmployee.department"
+        id="department"
+        type="text"
+        name="department"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
     <div class="crm-modal__form-group">
       <label for="technologies" class="crm-modal__label">Технологии<sup>*</sup></label>
-      <input id="technologies" type="text" name="technologies" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model="useStore.newEmployee.technologies"
+        id="technologies"
+        type="text"
+        name="technologies"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
   </div>
 </template>

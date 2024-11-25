@@ -24,7 +24,6 @@ onMounted(async () => {
 const onClickEdit = () => {
   if (useStore.selectedEmployee) {
     useStore.editingEmployee = { ...useStore.selectedEmployee };
-    console.log('> EmployeeId -> onClickEdit, Выбранный департамент:', useStore.selectedEmployee);
     useStore.openEditModal();
   }
 };

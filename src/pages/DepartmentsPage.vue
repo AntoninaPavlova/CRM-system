@@ -30,7 +30,6 @@ const onClickDetails = (id) => {
 
 const onClickEdit = (row) => {
   useStore.selectedDepartment = { ...row };
-  console.log('> DepartmentsPage -> onClickEdit, Редактируемый департамент:', useStore.selectedDepartment);
   useStore.openEditModal();
 };
 

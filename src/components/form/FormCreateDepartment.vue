@@ -1,25 +1,61 @@
-<script setup></script>
+<script setup>
+import { appStore } from '@/stores/store.js';
+
+const useStore = appStore();
+</script>
 
 <template>
   <div class="crm-modal__form-groups">
     <div class="crm-modal__form-group">
       <label for="name" class="crm-modal__label">Название департамента<sup>*</sup></label>
-      <input id="name" type="text" name="name" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model="useStore.newDepartment.name"
+        id="name"
+        type="text"
+        name="name"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
 
     <div class="crm-modal__form-group">
       <label for="description" class="crm-modal__label">Описание<sup>*</sup></label>
-      <input id="description" type="text" name="description" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model="useStore.newDepartment.description"
+        id="description"
+        type="text"
+        name="description"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
 
     <div class="crm-modal__form-group">
       <label for="number" class="crm-modal__label">Количество сотрудников<sup>*</sup></label>
-      <input id="number" type="number" name="number" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model.number="useStore.newDepartment.number"
+        id="number"
+        type="number"
+        name="number"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
 
     <div class="crm-modal__form-group">
       <label for="head" class="crm-modal__label">Заведующий<sup>*</sup></label>
-      <input id="head" type="text" name="head" class="crm-modal__input" placeholder="" required="" />
+      <input
+        v-model="useStore.newDepartment.head"
+        id="head"
+        type="text"
+        name="head"
+        class="crm-modal__input"
+        placeholder=""
+        required=""
+      />
     </div>
   </div>
 </template>

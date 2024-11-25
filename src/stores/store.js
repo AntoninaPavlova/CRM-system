@@ -6,6 +6,21 @@ export const appStore = defineStore('app-store', {
     departments: [],
     employees: [],
 
+    newDepartment: {
+      name: '',
+      description: '',
+      number: '',
+      head: '',
+    },
+
+    newEmployee: {
+      firstName: '',
+      lastName: '',
+      age: '',
+      department: '',
+      technologies: [],
+    },
+
     isEditModalOpen: false,
     isCreateModalOpen: false,
 
@@ -111,6 +126,49 @@ export const appStore = defineStore('app-store', {
         }
       } catch (error) {
         console.error('Ошибка при сохранении изменений:', error);
+      }
+    },
+
+    async createDepartment() {
+      try {
+        const response = await axios.post('http://localhost:5000/api/departments', this.newDepartment);
+
+        if (response.data) {
+          this.departments.push(response.data);
+          this.newDepartment = {
+            name: '',
+            description: '',
+            number: '',
+            head: '',
+          };
+          this.closeModal();
+        } else {
+          console.error('Сервер вернул пустой ответ');
+        }
+      } catch (error) {
+        console.error('Ошибка при сохранении нового департамента:', error);
+      }
+    },
+
+    async createEmployee() {
+      try {
+        const response = await axios.post('http://localhost:5000/api/employees', this.newEmployee);
+
+        if (response.data) {
+          this.employees.push(response.data);
+          this.newEmployee = {
+            firstName: '',
+            lastName: '',
+            age: '',
+            department: '',
+            technologies: [],
+          };
+          this.closeModal();
+        } else {
+          console.error('Сервер вернул пустой ответ');
+        }
+      } catch (error) {
+        console.error('Ошибка при сохранении нового сотрудника:', error);
       }
     },
 

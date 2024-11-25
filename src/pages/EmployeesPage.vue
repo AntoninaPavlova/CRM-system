@@ -31,7 +31,6 @@ const onClickDetails = (id) => {
 
 const onClickEdit = (row) => {
   useStore.selectedEmployee = { ...row };
-  console.log('> EmployeesPage -> onClickEdit, Редактируемый сотрудник:', useStore.selectedEmployee);
   useStore.openEditModal();
 };
 
