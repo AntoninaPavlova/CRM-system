@@ -19,15 +19,21 @@ const buttonText = computed(() => {
   }
 });
 
+const isButtonDisabled = computed(() => {
+  return route.path === '/';
+});
+
 const onClickCreate = () => {
-  useStore.openCreateModal();
+  if (!isButtonDisabled.value) {
+    useStore.openCreateModal();
+  }
 };
 </script>
 
 <template>
   <header class="crm-header">
     <div class="crm-header__menu">
-      <button type="button" @click="onClickCreate" class="crm-header__btn" v-if="buttonText">
+      <button type="button" @click="onClickCreate" class="crm-header__btn" :disabled="isButtonDisabled">
         {{ buttonText }}
       </button>
     </div>
