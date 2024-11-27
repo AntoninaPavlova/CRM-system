@@ -72,4 +72,16 @@ const onClickCreate = () => {
 .crm-header__btn:hover {
   background-color: var(--light-gray-bg-color);
 }
+
+@media (max-width: 575.99px) {
+  .crm-header__menu {
+    text-align: center;
+  }
+
+  .crm-header__btn {
+    max-width: fit-content;
+    height: 28px;
+    padding: 0 10px;
+  }
+}
 </style>

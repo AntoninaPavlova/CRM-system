@@ -69,4 +69,13 @@ const route = useRoute();
 .crm-sidebar__link {
   font-size: 16px;
 }
+
+@media (max-width: 991.98px) {
+  .crm-sidebar {
+    max-width: none;
+    width: 100%;
+    min-height: auto;
+    padding: 20px 0;
+  }
+}
 </style>

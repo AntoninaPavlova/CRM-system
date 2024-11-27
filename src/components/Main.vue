@@ -7,7 +7,6 @@ import ModalWindow from '@/components/modal/ModalWindow.vue';
 
 const useStore = appStore();
 
-
 onMounted(async () => {
   await useStore.fetchDepartments();
   await useStore.fetchEmployees();
@@ -22,7 +21,7 @@ onMounted(async () => {
         <slot></slot>
       </div>
     </div>
-    <ModalWindow v-if="useStore.isEditModalOpen"/>
+    <ModalWindow v-if="useStore.isEditModalOpen" />
     <ModalWindow v-if="useStore.isCreateModalOpen" />
   </main>
 </template>
@@ -44,4 +43,11 @@ onMounted(async () => {
   width: 100%;
   padding: 20px;
 }
+
+
+ @media (max-width: 991.98px) {
+  .crm-content {
+    flex-direction: column;
+  }
+} 
 </style>
