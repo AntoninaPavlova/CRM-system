@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 
 import FormCreateDepartment from '@/components/form/FormCreateDepartment.vue';
 import FormCreateEmployee from '@/components/form/FormCreateEmployee.vue';
-import ButtonSave from '@/components/buttons/buttonSave.vue';
+import ButtonSave from '@/components/buttons/ButtonSave.vue';
 
 const useStore = appStore();
 const route = useRoute();
