@@ -8,12 +8,12 @@ const Department = require('./models/Department');
 const Employee = require('./models/Employee');
 
 const app = express();
+const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
 
 const uri = process.env.MONGODB_URI;
-const PORT = process.env.MONGODB_URI || 5000;
 
 // Подключение к MongoDB
 mongoose
