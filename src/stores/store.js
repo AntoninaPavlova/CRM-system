@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import { getApiUrl } from '@/api/api.js';
+import { getApiUrl } from '@/api/apiUrl.js';
 
 export const appStore = defineStore('app-store', {
   state: () => ({
