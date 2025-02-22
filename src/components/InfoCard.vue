@@ -35,12 +35,12 @@ const props = defineProps({
       </div>
 
       <div class="crm-info__item">
-        <Button :onClick="onClickEdit" buttonClass="button--edit" icon="@/img/edit.png" />
+        <Button :onClick="onClickEdit" buttonClass="button--edit" icon="src/img/edit.png" />
       </div>
     </div>
   </div>
 
-  <Button :onClick="onClickGoBack" buttonClass="button-back" icon="@/img/back.png" />
+  <Button :onClick="onClickGoBack" buttonClass="button-back" icon="src/img/back.png" />
 </template>
 
 <style scoped>
