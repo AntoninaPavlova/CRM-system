@@ -1,30 +1,25 @@
 <script setup>
-import { appStore } from '@/stores/store.js';
+import { useAppStore } from '@/store/store.js';
 import { useRoute } from 'vue-router';
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 
 import Header from '@/components/Header.vue';
 import Main from '@/components/Main.vue';
-import EmployeeId from '@/components/id/EmployeeId.vue';
+import InfoCard from '@/components/InfoCard.vue';
 
 const { params } = useRoute();
-const useStore = appStore();
+const appStore = useAppStore();
 
-const props = defineProps({
-  isDepartment: {
-    type: Boolean,
-    default: true,
-  },
-});
+const employee = computed(() => appStore.openedEmployee);
 
 onMounted(async () => {
-  await useStore.fetchEmployeeById(params.id);
+  await appStore.fetchEmployeeById(params.id);
 });
 
 const onClickEdit = () => {
-  if (useStore.selectedEmployee) {
-    useStore.editingEmployee = { ...useStore.selectedEmployee };
-    useStore.openEditModal();
+  if (employee.value) {
+    appStore.selectedEmployee = { ...employee.value };
+    appStore.openEditModal();
   }
 };
 
@@ -36,8 +31,9 @@ const onClickGoBack = () => {
 <template>
   <div class="crm-container">
     <Header />
-    <Main :isDepartment="!props.isDepartment">
-      <EmployeeId :onClickEdit="onClickEdit" :onClickGoBack="onClickGoBack" />
+    <Main>
+      <InfoCard v-if="employee" :onClickEdit="onClickEdit" :onClickGoBack="onClickGoBack" :employee="employee" />
+      <p v-else class="crm-loading">Загрузка данных о сотруднике...</p>
     </Main>
   </div>
 </template>

@@ -1,13 +1,16 @@
 <script setup>
-import { appStore } from '@/stores/store.js';
-import FormEdit from '@/components/form/FormEdit.vue';
-import FormCreate from '@/components/form/FormCreate.vue';
+import { computed } from 'vue';
 
-const useStore = appStore();
+import { useAppStore } from '@/store/store.js';
+import FormAction from '@/components/Form/FormAction.vue';
 
+const appStore = useAppStore();
+
+const isCreating = computed(() => appStore.isCreateModalOpen);
+const isEditing = computed(() => appStore.isEditModalOpen);
 
 const onClickCloseModal = () => {
-  useStore.closeModal();
+  appStore.closeModal();
 };
 </script>
 
@@ -25,8 +28,7 @@ const onClickCloseModal = () => {
 
       <!-- Modal body -->
       <div class="crm-modal__body">
-        <FormEdit v-if="useStore.isEditModalOpen" />
-        <FormCreate v-if="useStore.isCreateModalOpen" />
+        <FormAction v-if="isCreating || isEditing" />
       </div>
 
       <!-- Modal footer -->
@@ -64,6 +66,7 @@ const onClickCloseModal = () => {
   justify-content: space-between;
   padding: 16px;
   border-bottom: 1px solid var(--light-gray-color);
+  background-color: var(--pearch-bg-color);
 }
 
 .crm-modal__title-text {
@@ -73,27 +76,14 @@ const onClickCloseModal = () => {
 }
 
 .crm-modal__title-highlight {
-  font-size: 12px;
+  font-size: var(--font-size-12);
   color: var(--lilac-color);
   text-transform: uppercase;
 }
 
 .crm-modal__form {
   margin-bottom: 16px;
-  padding: 20px;
-}
-
-.crm-modal__button--delete {
-  padding: 8px 16px;
-  margin: 0 auto;
-
-  display: flex;
-
-  color: var(--black-color);
-  font-weight: 500;
-
-  text-decoration: underline;
-  cursor: pointer;
+  padding: var(--padding-20);
 }
 
 .crm-modal__close-button {
@@ -118,5 +108,11 @@ const onClickCloseModal = () => {
 
   background-color: var(--dark-gray-bg-color);
   opacity: 0.6;
+}
+
+@media (max-width: 575.99px) {
+  .crm-modal {
+    width: calc(100% - 20px);
+  }
 }
 </style>

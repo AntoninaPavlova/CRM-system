@@ -1,10 +1,10 @@
 <script setup>
-import { appStore } from '@/stores/store.js';
+import { useAppStore } from '@/store/store.js';
 import { useRoute } from 'vue-router';
 import { computed } from 'vue';
 
 const route = useRoute();
-const useStore = appStore();
+const appStore = useAppStore();
 
 const buttonText = computed(() => {
   switch (route.path) {
@@ -15,17 +15,17 @@ const buttonText = computed(() => {
     case '/':
       return 'Лого';
     default:
-      return '';
+      return 'Лого';
   }
 });
 
 const isButtonDisabled = computed(() => {
-  return route.path === '/';
+  return buttonText.value === 'Лого';
 });
 
 const onClickCreate = () => {
   if (!isButtonDisabled.value) {
-    useStore.openCreateModal();
+    appStore.openCreateModal();
   }
 };
 </script>
@@ -42,13 +42,13 @@ const onClickCreate = () => {
 
 <style scoped>
 .crm-header {
-  height: var(--header-height);
+  height: var(--height-60);
   padding: 20px 25px 20px;
 
   display: flex;
   align-items: center;
 
-  background: var(--turquoise-bg-color);
+  background-color: var(--dark-blue-bg-color);
 }
 
 .crm-header__menu {
@@ -57,20 +57,16 @@ const onClickCreate = () => {
 }
 
 .crm-header__btn {
-  max-width: 180px;
+  max-width: 160px;
   width: 100%;
-  height: 40px;
+  height: 35px;
 
-  color: var(--black-color);
-  font-size: 16px;
-  font-weight: 400;
-  border-radius: 6px;
-  background-color: var(--white-bg-color);
+  color: var(--white-color);
+  font-size: var(--font-size-12);
+  font-weight: 500;
+  border-radius: 20px;
+  background-color: var(--green-bg-color);
   cursor: pointer;
-}
-
-.crm-header__btn:hover {
-  background-color: var(--light-gray-bg-color);
 }
 
 @media (max-width: 575.99px) {
@@ -79,8 +75,7 @@ const onClickCreate = () => {
   }
 
   .crm-header__btn {
-    max-width: fit-content;
-    height: 28px;
+    height: var(--height-28);
     padding: 0 10px;
   }
 }

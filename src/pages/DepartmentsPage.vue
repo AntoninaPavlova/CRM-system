@@ -1,44 +1,43 @@
 <script setup>
-import { appStore } from '@/stores/store.js';
+import { useAppStore } from '@/store/store.js';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import {  computed } from 'vue';
 
 import Header from '@/components/Header.vue';
 import Main from '@/components/Main.vue';
-import DataTableDepartments from '@/components/table/DataTableDepartments.vue';
+import DataTable from '@/components/DataTable.vue';
+import { departmentColumns } from '@/consts/DataTableConfig.js';
 
-const useStore = appStore();
+const appStore = useAppStore();
 const router = useRouter();
-
-const departmentColumns = ref([
-  { label: 'Название департамента', field: 'name' },
-  { label: 'Описание', field: 'description' },
-  { label: 'Количество сотрудников', field: 'number' },
-  { label: 'Заведующий', field: 'head' },
-  { label: 'Действия', field: 'edit', sortable: false },
-  { label: '', field: 'delete', sortable: false },
-]);
 
 const paginationOptions = {
   enabled: true,
   perPage: 10,
 };
 
+const departments = computed(() => appStore.departments);
+
 const onClickDetails = (id) => {
   router.push(`/departments/${id}`);
 };
 
 const onClickEdit = (row) => {
-  useStore.selectedDepartment = { ...row };
-  useStore.openEditModal();
+  console.log(row);
+  appStore.selectedDepartment = { ...row };
+  appStore.openEditModal();
 };
 
 const onClickDelete = async (id) => {
-  await useStore.deleteDepartment(id);
+  await appStore.deleteDepartment(id);
 };
 
 const truncateDescription = (description) => {
-  return description.length > 18 ? description.substring(0, 18) + ' ...' : description;
+  if (typeof description === 'string') {
+    return description.length > 18 ? description.substring(0, 18) + ' ...' : description;
+  }
+
+  return '';
 };
 </script>
 
@@ -46,9 +45,9 @@ const truncateDescription = (description) => {
   <div class="crm-container">
     <Header />
     <Main>
-      <DataTableDepartments
+      <DataTable
         :columns="departmentColumns"
-        :rows="useStore.departments"
+        :rows="departments"
         :pagination-options="paginationOptions"
         :onClickEdit="onClickEdit"
         :onClickDelete="onClickDelete"

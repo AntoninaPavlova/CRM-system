@@ -1,15 +1,23 @@
 <script setup>
 import { onMounted } from 'vue';
-import { appStore } from '@/stores/store.js';
+import { useAppStore } from '@/store/store.js';
+import { computed } from 'vue';
 
 import Sidebar from '@/components/Sidebar.vue';
-import ModalWindow from '@/components/modal/ModalWindow.vue';
+import ModalWindow from '@/components/ModalWindow.vue';
 
-const useStore = appStore();
+const appStore = useAppStore();
+
+const isCreating = computed(() => appStore.isCreateModalOpen);
+const isEditing = computed(() => appStore.isEditModalOpen);
 
 onMounted(async () => {
-  await useStore.fetchDepartments();
-  await useStore.fetchEmployees();
+  await appStore.fetchDepartments();
+  await appStore.fetchEmployees();
+});
+
+const modalType = computed(() => {
+  return isCreating.value ? 'create' : isEditing.value ? 'edit' : null;
 });
 </script>
 
@@ -21,8 +29,8 @@ onMounted(async () => {
         <slot></slot>
       </div>
     </div>
-    <ModalWindow v-if="useStore.isEditModalOpen" />
-    <ModalWindow v-if="useStore.isCreateModalOpen" />
+
+    <ModalWindow v-if="modalType" :type="modalType" />
   </main>
 </template>
 
@@ -41,13 +49,12 @@ onMounted(async () => {
 
 .crm-details {
   width: 100%;
-  padding: 20px;
+  padding: var(--padding-20);
 }
 
-
- @media (max-width: 991.98px) {
+@media (max-width: 991.98px) {
   .crm-content {
     flex-direction: column;
   }
-} 
+}
 </style>

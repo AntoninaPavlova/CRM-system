@@ -1,41 +1,34 @@
 <script setup>
-import { appStore } from '@/stores/store.js';
+import { useAppStore } from '@/store/store.js';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 import Header from '@/components/Header.vue';
 import Main from '@/components/Main.vue';
-import DataTableEmployees from '@/components/table/DataTableEmployees.vue';
+import DataTable from '@/components/DataTable.vue';
+import { employeeColumns } from '@/consts/DataTableConfig.js';
 
-const useStore = appStore();
+const appStore = useAppStore();
 const router = useRouter();
-
-const employeeColumns = ref([
-  { label: 'Имя', field: 'firstName' },
-  { label: 'Фамилия', field: 'lastName' },
-  { label: 'Возраст', field: 'age' },
-  { label: 'Департамент', field: 'department' },
-  { label: 'Технологии', field: 'technologies' },
-  { label: 'Действия', field: 'edit', sortable: false },
-  { label: '', field: 'delete', sortable: false },
-]);
 
 const paginationOptions = {
   enabled: true,
   perPage: 10,
 };
 
+const employees = computed(() => appStore.employees);
+
 const onClickDetails = (id) => {
   router.push(`/employees/${id}`);
 };
 
 const onClickEdit = (row) => {
-  useStore.selectedEmployee = { ...row };
-  useStore.openEditModal();
+  appStore.selectedEmployee = { ...row };
+  appStore.openEditModal();
 };
 
 const onClickDelete = async (id) => {
-  await useStore.deleteEmployee(id);
+  await appStore.deleteEmployee(id);
 };
 </script>
 
@@ -43,9 +36,9 @@ const onClickDelete = async (id) => {
   <div class="crm-container">
     <Header />
     <Main>
-      <DataTableEmployees
+      <DataTable
         :columns="employeeColumns"
-        :rows="useStore.employees"
+        :rows="employees"
         :pagination-options="paginationOptions"
         :onClickEdit="onClickEdit"
         :onClickDelete="onClickDelete"

@@ -2,52 +2,54 @@
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
+
+const isActive = (path) => route.path === path;
+
+const menuItems = [
+  { path: '/', label: 'Главная' },
+  { path: '/departments', label: 'Департаменты' },
+  { path: '/employees', label: 'Сотрудники' },
+];
 </script>
 
 <template>
-  <div class="crm-sidebar">
-    <ul сlass="crm-sidebar__list">
-      <li class="crm-sidebar__point" :class="{ active: route.path === '/' }">
-        <router-link :to="`/`" class="crm-sidebar__link">Главная</router-link>
-      </li>
-      <li class="crm-sidebar__point" :class="{ active: route.path === '/departments' }">
-        <router-link :to="`/departments`" class="crm-sidebar__link">Департаменты</router-link>
-      </li>
-      <li class="crm-sidebar__point" :class="{ active: route.path === '/employees' }">
-        <router-link :to="`/employees`" class="crm-sidebar__link">Сотрудники</router-link>
+  <nav class="crm-sidebar">
+    <ul class="crm-sidebar__list">
+      <li
+        v-for="item in menuItems"
+        :key="item.path"
+        class="crm-sidebar__point"
+        :class="{ active: isActive(item.path) }"
+      >
+        <router-link :to="item.path" class="crm-sidebar__link">{{ item.label }}</router-link>
       </li>
     </ul>
-  </div>
+  </nav>
 </template>
 
 <style scoped>
 .crm-sidebar {
-  max-width: 170px;
+  max-width: 228px;
   width: 100%;
-  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100vh - var(--height-60));
   padding-top: 40px;
 
   display: flex;
   flex-direction: column;
 
-  background: var(--turquoise-bg-color);
+  background-color: var(--dark-blue-bg-color);
   overflow: hidden;
 }
 
 .crm-sidebar__point {
-  max-width: 150px;
+  max-width: 100%;
   width: 100%;
-  height: 28px;
-  margin: 0 auto 10px;
+  height: 47px;
+  margin: 0 auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: var(--black-color);
-  font-weight: 400;
-  border-radius: 6px;
-  background-color: var(--white-color);
+  color: var(--dark-gray-color);
+  font-weight: 500;
+  background-color: transparent;
   cursor: pointer;
   &:nth-of-type(1) {
     .crm-link {
@@ -58,16 +60,24 @@ const route = useRoute();
     margin-bottom: 0;
   }
   &:hover {
-    background-color: var(--light-gray-bg-color);
+    background-color: var(--white-bg-color);
   }
 }
 
 .crm-sidebar__point.active {
-  background-color: var(--light-gray-bg-color);
+  background-color: var(--white-bg-color);
 }
 
 .crm-sidebar__link {
-  font-size: 16px;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: var(--font-size-12);
+  text-transform: uppercase;
 }
 
 @media (max-width: 991.98px) {
@@ -76,6 +86,16 @@ const route = useRoute();
     width: 100%;
     min-height: auto;
     padding: 20px 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .crm-sidebar {
+    padding: 0;
+  }
+
+  .crm-sidebar__point {
+    height: 35px;
   }
 }
 </style>
