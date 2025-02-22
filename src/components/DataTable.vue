@@ -61,7 +61,7 @@ const getCellContent = (row, field) => {
             <Button
               @click.stop="onClickEdit(props.row)"
               buttonClass="crm-table__button crm-table__edit-button"
-              icon="/src/img/edit.png"
+              icon="@/img/edit.png"
             />
           </div>
 
@@ -69,7 +69,7 @@ const getCellContent = (row, field) => {
             <Button
               @click.stop="onClickDelete(props.row._id)"
               buttonClass="crm-table__button crm-table__delete-button"
-              icon="/src/img/delete.png"
+              icon="@/img/delete.png"
             />
           </div>
 
