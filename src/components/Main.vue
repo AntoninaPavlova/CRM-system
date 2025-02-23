@@ -1,5 +1,4 @@
 <script setup>
-import { onMounted } from 'vue';
 import { useAppStore } from '@/store/store.js';
 import { computed } from 'vue';
 
@@ -11,10 +10,6 @@ const appStore = useAppStore();
 const isCreating = computed(() => appStore.isCreateModalOpen);
 const isEditing = computed(() => appStore.isEditModalOpen);
 
-onMounted(async () => {
-  await appStore.fetchDepartments();
-  await appStore.fetchEmployees();
-});
 
 const modalType = computed(() => {
   return isCreating.value ? 'create' : isEditing.value ? 'edit' : null;

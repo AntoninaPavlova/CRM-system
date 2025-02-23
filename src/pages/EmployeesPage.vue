@@ -1,7 +1,7 @@
 <script setup>
 import { useAppStore } from '@/store/store.js';
 import { useRouter } from 'vue-router';
-import { computed } from 'vue';
+import { onMounted, computed } from 'vue';
 
 import Header from '@/components/Header.vue';
 import Main from '@/components/Main.vue';
@@ -10,6 +10,11 @@ import { employeeColumns } from '@/consts/DataTableConfig.js';
 
 const appStore = useAppStore();
 const router = useRouter();
+
+
+onMounted(async () => {
+  await appStore.fetchEmployees();
+});
 
 const paginationOptions = {
   enabled: true,
