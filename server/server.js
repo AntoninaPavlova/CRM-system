@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const departmentRoutes = require('./api/departments');
-const employeeRoutes = require('./api/employees');
+const departmentRoutes = require('./routes/departments');
+const employeeRoutes = require('./routes/employees');
 
 dotenv.config();
 
@@ -26,8 +26,8 @@ mongoose
   });
 
 // Используем маршруты
-app.use('/api/departments', departmentRoutes);
-app.use('/api/employees', employeeRoutes);
+app.use('/routes/departments', departmentRoutes);
+app.use('/routes/employees', employeeRoutes);
 
 // Запуск сервера
 app.listen(PORT, () => {
