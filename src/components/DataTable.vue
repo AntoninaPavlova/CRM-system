@@ -57,21 +57,17 @@ const getCellContent = (row, field) => {
     <template v-slot:table-row="props">
       <div class="crm-table__row" @click="onClickDetails(props.row._id)">
         <div class="crm-table__cell">
-          <div v-if="props.column.field === 'edit'">
-            <Button
-              @click.stop="onClickEdit(props.row)"
-              buttonClass="crm-table__button crm-table__edit-button"
-              icon="src/img/edit.png"
-            />
-          </div>
+          <Button
+            v-if="props.column.field === 'edit'"
+            @click.stop="onClickEdit(props.row)"
+            icon="src/assets/img/edit.png"
+          />
 
-          <div v-if="props.column.field === 'delete'">
-            <Button
-              @click.stop="onClickDelete(props.row._id)"
-              buttonClass="crm-table__button crm-table__delete-button"
-              icon="src/img/delete.png"
-            />
-          </div>
+          <Button
+            v-if="props.column.field === 'delete'"
+            @click.stop="onClickDelete(props.row._id)"
+            icon="src/assets/img/delete.png"
+          />
 
           <div v-if="props.column.field === 'description'">
             {{ truncateDescription(props.row.description) }}

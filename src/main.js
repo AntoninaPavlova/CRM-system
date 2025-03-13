@@ -11,7 +11,8 @@ import Toast, { POSITION } from 'vue-toastification';
 import { plugin, defaultConfig } from '@formkit/vue';
 import '@formkit/themes/genesis'; // Импортируйте тему по умолчанию (или другую тему)
 
-import './styles/reset.css';
+
+import './assets/styles/reset.css';
 import 'vue-toastification/dist/index.css';
 
 const app = createApp(App);
